@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block title %}Записи сообщества {{ group }} | Yatube{% endblock %}
+{% block content %}
+    <h1>{{ group }}</h1>
+    <p>{{ group.description }}</p>
+    {% for post in posts %}
+    <article>
+    <h3>Автор: {{ post.author.get_full_name }}, Дата публикации: {{ post.pub_date|date:"d M Y" }}</h3>
+    </article>
+    <p>{{ post.text|linebreaksbr }}</p>
+    {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+{% endblock %}
